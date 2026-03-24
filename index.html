@@ -329,11 +329,20 @@
     }
     .yesonly-title em { font-style: italic; color: var(--gold); }
 
-    /* ── NO BUTTON (teleporting) ── */
+    /* ── NO BUTTON (teleporting) — smaller than YES ── */
     #no-teleport-btn {
       position: fixed;
       display: none;
       z-index: 9999;
+      padding: 12px 18px !important;
+      font-size: 1.1rem !important;
+      min-height: 44px !important;
+      gap: 10px !important;
+    }
+    #no-teleport-btn .box {
+      width: 24px !important;
+      height: 24px !important;
+      font-size: 1rem !important;
     }
 
     /* ══════════════════════════════════════
@@ -510,13 +519,15 @@
   </div>
 </section>
 
+
 <!-- ════════════════════════════════════
-     PAGE 2 — "BAN"
+     PAGE 2 — "BAD DUDE"
 ════════════════════════════════════ -->
 <section id="page-no" class="page">
-  <p class="no-text">I always knew you were a BITCH ASS NIGGA.</p>
-  <p class="no-sub">Let's try this again...</p>
+  <p class="no-text">"I knew you were a BITCH ASS NIGGA!"</p>
+  <p class="no-sub">Returning you to face your decision…</p>
 </section>
+
 
 <!-- ════════════════════════════════════
      PAGE 3 — FORM (info collection)
@@ -541,12 +552,13 @@
   </div>
 </section>
 
+
 <!-- ════════════════════════════════════
      PAGE 4 — THANK YOU
 ════════════════════════════════════ -->
 <section id="page-thanks" class="page">
   <p class="thanks-big">Thank You!</p>
-  <p class="thanks-sub">We'll be in touch with all the details. This is going to be legendary.</p>
+  <p class="thanks-sub">I'll be in touch with the details soon.</p>
 </section>
 
 
@@ -571,13 +583,14 @@
      PAGE 7 — YES ONLY (after explosion)
 ════════════════════════════════════ -->
 <section id="page-yesonly" class="page">
-  <p class="landing-eyebrow">If you survived the blast</p>
+  <p class="landing-eyebrow">If you've survived the blast</p>
   <h1 class="yesonly-title">Will you be my groomsman?</h1>
   <div class="landing-divider"></div>
   <button class="checkbox-btn btn-yes" onclick="handleYes()" style="max-width:260px;margin:0 auto;">
     <span class="box" id="yes-box-p7"></span> YES
   </button>
 </section>
+
 
 <!-- ════════════════════════════════════
      FLOATING NO BUTTON (teleport mode)
@@ -733,9 +746,45 @@
   function showExplosion() {
     document.getElementById('explosion-img').src = EXPLOSION_SRC;
     showPage('page-boom');
-    setTimeout(() => {
+
+    const DURATION = 5500;
+    const startTime = Date.now();
+    let timer = null;
+    let advanced = false;
+
+    function advance() {
+      if (advanced) return;
+      advanced = true;
+      clearTimeout(timer);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      document.getElementById('page-boom').removeEventListener('click', advance);
       showPage('page-yesonly');
-    }, 7000);
+    }
+
+    function scheduleRemaining() {
+      const elapsed = Date.now() - startTime;
+      const remaining = DURATION - elapsed;
+      if (remaining <= 0) {
+        advance();
+      } else {
+        clearTimeout(timer);
+        timer = setTimeout(advance, remaining);
+      }
+    }
+
+    // Primary timer
+    timer = setTimeout(advance, DURATION);
+
+    // Page Visibility API — catches iOS backgrounding/screen lock/tab switch
+    function onVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        scheduleRemaining();
+      }
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    // Tap-to-skip fallback — tap the explosion to continue on mobile
+    document.getElementById('page-boom').addEventListener('click', advance);
   }
 
 </script>
