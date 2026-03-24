@@ -345,160 +345,7 @@
       font-size: 1rem !important;
     }
 
-    /* ══════════════════════════════════════
-       MOBILE OPTIMIZATIONS (iPhone/Android)
-    ══════════════════════════════════════ */
-
-    /* Prevent iOS font size inflation */
-    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-
-    /* Remove tap flash on mobile */
-    button, input, textarea {
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-
-    /* Prevent iOS zoom on input focus (font must be >= 16px) */
-    .form-group input,
-    .form-group textarea {
-      font-size: 16px;
-    }
-
-    /* Ensure min touch target size (Apple/Google recommend 44px) */
-    .checkbox-btn {
-      min-height: 56px;
-    }
-    .submit-btn {
-      min-height: 56px;
-    }
-
-    /* ── Small phones (≤ 480px) ── */
-    @media (max-width: 480px) {
-
-      /* Pages — tighter padding on small screens */
-      .page {
-        padding: 32px 16px;
-        justify-content: center;
-      }
-
-      /* Landing */
-      .landing-eyebrow {
-        font-size: 0.7rem;
-        letter-spacing: 0.3em;
-        margin-bottom: 12px;
-      }
-      .landing-question {
-        font-size: clamp(2rem, 10vw, 3rem);
-        line-height: 1.15;
-        margin-bottom: 8px;
-      }
-      .landing-divider {
-        margin: 20px auto;
-      }
-
-      /* Stack YES/NO buttons vertically on very small screens */
-      .checkbox-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        max-width: 320px;
-      }
-      .checkbox-btn {
-        justify-content: center;
-        padding: 18px 24px;
-        font-size: 1.4rem;
-      }
-
-      /* NO page */
-      .no-text {
-        font-size: clamp(1.6rem, 8vw, 2.4rem);
-      }
-
-      /* Form page */
-      .form-subtitle {
-        font-size: 1rem;
-        margin-bottom: 24px;
-      }
-      .form-card {
-        padding: 28px 20px;
-        box-shadow: 4px 4px 0 var(--gold);
-      }
-      .form-group {
-        margin-bottom: 20px;
-      }
-      .submit-btn {
-        font-size: 1.2rem;
-        letter-spacing: 0.15em;
-      }
-
-      /* Thank you */
-      .thanks-big {
-        font-size: clamp(2.8rem, 16vw, 5rem);
-      }
-      .thanks-sub {
-        font-size: 1.1rem;
-      }
-
-      /* Self destruct */
-      .destruct-text {
-        font-size: clamp(1.6rem, 9vw, 3rem);
-        padding: 0 8px;
-      }
-      .destruct-counter {
-        font-size: clamp(5rem, 28vw, 10rem);
-      }
-
-      /* Yes-only page */
-      .yesonly-title {
-        font-size: clamp(1.4rem, 7vw, 2rem);
-        margin-bottom: 24px;
-      }
-    }
-
-    /* ── Medium phones (481px – 768px) ── */
-    @media (min-width: 481px) and (max-width: 768px) {
-      .checkbox-grid {
-        max-width: 400px;
-        gap: 16px;
-      }
-      .checkbox-btn {
-        padding: 18px 20px;
-        font-size: 1.5rem;
-      }
-      .form-card {
-        padding: 32px 28px;
-      }
-    }
-
-    /* ── Landscape on phones ── */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .page {
-        padding: 20px 16px;
-        min-height: 100vh;
-      }
-      .landing-question {
-        font-size: clamp(1.6rem, 5vw, 2.4rem);
-        margin-bottom: 4px;
-      }
-      .landing-divider {
-        margin: 12px auto;
-      }
-      .checkbox-btn {
-        padding: 12px 20px;
-        font-size: 1.2rem;
-        min-height: 48px;
-      }
-      .checkbox-btn .box {
-        width: 28px;
-        height: 28px;
-      }
-      .destruct-text {
-        font-size: clamp(1.2rem, 6vw, 2rem);
-      }
-      .destruct-counter {
-        font-size: clamp(3rem, 15vw, 6rem);
-      }
-    }
-  </style>
+    </style>
 </head>
 <body>
 
@@ -525,7 +372,7 @@
 ════════════════════════════════════ -->
 <section id="page-no" class="page">
   <p class="no-text">"I knew you were a BITCH ASS NIGGA!"</p>
-  <p class="no-sub">Let's try this again…</p>
+  <p class="no-sub">Let's try again…</p>
 </section>
 
 
@@ -534,7 +381,7 @@
 ════════════════════════════════════ -->
 <section id="page-form" class="page">
   <h2 class="form-title">You're In!</h2>
-  <p class="form-subtitle">Let's make it official!</p>
+  <p class="form-subtitle">Let's make it official</p>
   <div class="form-card">
     <div class="form-group">
       <label>Phone Number</label>
@@ -558,7 +405,7 @@
 ════════════════════════════════════ -->
 <section id="page-thanks" class="page">
   <p class="thanks-big">Thank You!</p>
-  <p class="thanks-sub">I'll be in touch with the details soon.</p>
+  <p class="thanks-sub">We'll be in touch with all the details.</p>
 </section>
 
 
@@ -635,7 +482,7 @@
   //   2. Click "New Form", give it a name (e.g. "Groomsman"), set email to christophertrunell@gmail.com
   //   3. Copy the endpoint URL (looks like https://formspree.io/f/abcd1234)
   //   4. Paste it below, replacing YOUR_FORM_ID
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mykbgypj';
 
   function handleSubmit() {
     const phone  = document.getElementById('input-phone').value.trim();
@@ -747,7 +594,7 @@
     document.getElementById('explosion-img').src = EXPLOSION_SRC;
     showPage('page-boom');
 
-    const DURATION = 5500;
+    const DURATION = 7000;
     const startTime = Date.now();
     let timer = null;
     let advanced = false;
