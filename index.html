@@ -287,12 +287,14 @@
     /* Mobile-specific GIF fixes */
     @media (max-width: 768px) {
       #page-boom {
-        display: flex;
         justify-content: center;
         align-items: center;
         width: 100vw;
         height: 100dvh;
         height: 100vh;
+      }
+      #page-boom.active {
+        display: flex;
       }
       #page-boom img {
         width: 100vw;
