@@ -268,11 +268,49 @@
     #page-boom {
       background: #000;
       padding: 0;
+      overflow: hidden;
+      /* Use dvh (dynamic viewport height) so mobile browser chrome is accounted for */
+      min-height: 100dvh;
+      min-height: 100vh; /* fallback for older browsers */
     }
     #page-boom img {
+      display: block;
       width: 100%;
-      height: 100vh;
-      object-fit: cover;
+      height: 100%;
+      max-width: 100vw;
+      max-height: 100dvh;
+      max-height: 100vh; /* fallback */
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    /* Mobile-specific GIF fixes */
+    @media (max-width: 768px) {
+      #page-boom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100dvh;
+        height: 100vh;
+      }
+      #page-boom img {
+        width: 100vw;
+        height: 100dvh;
+        height: 100vh;
+        object-fit: cover;
+      }
+    }
+
+    /* Landscape on phones — letterbox to prevent squishing */
+    @media (max-width: 768px) and (orientation: landscape) {
+      #page-boom img {
+        width: auto;
+        height: 100dvh;
+        height: 100vh;
+        max-width: 100vw;
+        object-fit: contain;
+      }
     }
 
     /* ── YES-ONLY PAGE ── */
@@ -472,7 +510,6 @@
   </div>
 </section>
 
-
 <!-- ════════════════════════════════════
      PAGE 2 — "BAN"
 ════════════════════════════════════ -->
@@ -480,7 +517,6 @@
   <p class="no-text">I always knew you were a BITCH ASS NIGGA.</p>
   <p class="no-sub">Let's try this again...</p>
 </section>
-
 
 <!-- ════════════════════════════════════
      PAGE 3 — FORM (info collection)
@@ -505,13 +541,12 @@
   </div>
 </section>
 
-
 <!-- ════════════════════════════════════
      PAGE 4 — THANK YOU
 ════════════════════════════════════ -->
 <section id="page-thanks" class="page">
-  <p class="thanks-big">Thank You! I'm excited to have you stand with me</p>
-  <p class="thanks-sub">I'll be in touch with more details soon!</p>
+  <p class="thanks-big">Thank You!</p>
+  <p class="thanks-sub">We'll be in touch with all the details. This is going to be legendary.</p>
 </section>
 
 
@@ -543,7 +578,6 @@
     <span class="box" id="yes-box-p7"></span> YES
   </button>
 </section>
-
 
 <!-- ════════════════════════════════════
      FLOATING NO BUTTON (teleport mode)
